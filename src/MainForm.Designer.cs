@@ -36,12 +36,13 @@
             this.radioButtonDebug = new System.Windows.Forms.RadioButton();
             this.buttonStart = new System.Windows.Forms.Button();
             this.panelSelectSript = new System.Windows.Forms.Panel();
-            this.panelBuil = new System.Windows.Forms.Panel();
+            this.panelBuild = new System.Windows.Forms.Panel();
             this.labelFileMask = new System.Windows.Forms.Label();
             this.labelCommandLine = new System.Windows.Forms.Label();
             this.comboBoxResolutions = new System.Windows.Forms.ComboBox();
+            this.comboBoxGapi = new System.Windows.Forms.ComboBox();
             this.panelSelectSript.SuspendLayout();
-            this.panelBuil.SuspendLayout();
+            this.panelBuild.SuspendLayout();
             this.SuspendLayout();
             // 
             // radioButtonAngelScript
@@ -73,7 +74,7 @@
             this.listBoxScripts.FormattingEnabled = true;
             this.listBoxScripts.Location = new System.Drawing.Point(12, 32);
             this.listBoxScripts.Name = "listBoxScripts";
-            this.listBoxScripts.Size = new System.Drawing.Size(655, 173);
+            this.listBoxScripts.Size = new System.Drawing.Size(655, 225);
             this.listBoxScripts.TabIndex = 3;
             this.listBoxScripts.SelectedIndexChanged += new System.EventHandler(this.listBoxScripts_SelectedIndexChanged);
             this.listBoxScripts.DoubleClick += new System.EventHandler(this.listBoxScripts_DoubleClick);
@@ -82,9 +83,9 @@
             // 
             this.checkedListBoxOptions.CheckOnClick = true;
             this.checkedListBoxOptions.FormattingEnabled = true;
-            this.checkedListBoxOptions.Location = new System.Drawing.Point(12, 211);
+            this.checkedListBoxOptions.Location = new System.Drawing.Point(12, 263);
             this.checkedListBoxOptions.Name = "checkedListBoxOptions";
-            this.checkedListBoxOptions.Size = new System.Drawing.Size(655, 64);
+            this.checkedListBoxOptions.Size = new System.Drawing.Size(655, 169);
             this.checkedListBoxOptions.TabIndex = 4;
             this.checkedListBoxOptions.SelectedIndexChanged += new System.EventHandler(this.checkedListBoxOptions_SelectedIndexChanged);
             // 
@@ -114,7 +115,7 @@
             // 
             // buttonStart
             // 
-            this.buttonStart.Location = new System.Drawing.Point(592, 281);
+            this.buttonStart.Location = new System.Drawing.Point(592, 435);
             this.buttonStart.Name = "buttonStart";
             this.buttonStart.Size = new System.Drawing.Size(75, 51);
             this.buttonStart.TabIndex = 8;
@@ -131,14 +132,14 @@
             this.panelSelectSript.Size = new System.Drawing.Size(130, 18);
             this.panelSelectSript.TabIndex = 0;
             // 
-            // panelBuil
+            // panelBuild
             // 
-            this.panelBuil.Controls.Add(this.radioButtonRelease);
-            this.panelBuil.Controls.Add(this.radioButtonDebug);
-            this.panelBuil.Location = new System.Drawing.Point(238, 281);
-            this.panelBuil.Name = "panelBuil";
-            this.panelBuil.Size = new System.Drawing.Size(200, 21);
-            this.panelBuil.TabIndex = 6;
+            this.panelBuild.Controls.Add(this.radioButtonRelease);
+            this.panelBuild.Controls.Add(this.radioButtonDebug);
+            this.panelBuild.Location = new System.Drawing.Point(238, 435);
+            this.panelBuild.Name = "panelBuild";
+            this.panelBuild.Size = new System.Drawing.Size(200, 21);
+            this.panelBuild.TabIndex = 6;
             // 
             // labelFileMask
             // 
@@ -155,7 +156,7 @@
             // 
             this.labelCommandLine.AutoSize = true;
             this.labelCommandLine.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.labelCommandLine.Location = new System.Drawing.Point(12, 308);
+            this.labelCommandLine.Location = new System.Drawing.Point(12, 462);
             this.labelCommandLine.Name = "labelCommandLine";
             this.labelCommandLine.Size = new System.Drawing.Size(98, 15);
             this.labelCommandLine.TabIndex = 10;
@@ -165,22 +166,38 @@
             // 
             this.comboBoxResolutions.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxResolutions.FormattingEnabled = true;
-            this.comboBoxResolutions.Location = new System.Drawing.Point(12, 281);
+            this.comboBoxResolutions.Location = new System.Drawing.Point(12, 435);
             this.comboBoxResolutions.Name = "comboBoxResolutions";
             this.comboBoxResolutions.Size = new System.Drawing.Size(220, 21);
             this.comboBoxResolutions.TabIndex = 5;
             this.comboBoxResolutions.SelectedIndexChanged += new System.EventHandler(this.comboBoxResolutions_SelectedIndexChanged);
+            // 
+            // comboBoxGapi
+            // 
+            this.comboBoxGapi.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxGapi.FormattingEnabled = true;
+            this.comboBoxGapi.Items.AddRange(new object[] {
+            "Default",
+            "OpenGL",
+            "D3D9",
+            "D3D11"});
+            this.comboBoxGapi.Location = new System.Drawing.Point(486, 9);
+            this.comboBoxGapi.Name = "comboBoxGapi";
+            this.comboBoxGapi.Size = new System.Drawing.Size(181, 21);
+            this.comboBoxGapi.TabIndex = 11;
+            this.comboBoxGapi.SelectedIndexChanged += new System.EventHandler(this.comboBoxGapi_SelectedIndexChanged);
             // 
             // MainForm
             // 
             this.AcceptButton = this.buttonStart;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(679, 346);
+            this.ClientSize = new System.Drawing.Size(679, 497);
+            this.Controls.Add(this.comboBoxGapi);
             this.Controls.Add(this.comboBoxResolutions);
             this.Controls.Add(this.labelCommandLine);
             this.Controls.Add(this.labelFileMask);
-            this.Controls.Add(this.panelBuil);
+            this.Controls.Add(this.panelBuild);
             this.Controls.Add(this.panelSelectSript);
             this.Controls.Add(this.buttonStart);
             this.Controls.Add(this.checkedListBoxOptions);
@@ -192,8 +209,8 @@
             this.Text = "Urho3D Samples Launcher";
             this.panelSelectSript.ResumeLayout(false);
             this.panelSelectSript.PerformLayout();
-            this.panelBuil.ResumeLayout(false);
-            this.panelBuil.PerformLayout();
+            this.panelBuild.ResumeLayout(false);
+            this.panelBuild.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -209,10 +226,11 @@
         private System.Windows.Forms.RadioButton radioButtonDebug;
         private System.Windows.Forms.Button buttonStart;
         private System.Windows.Forms.Panel panelSelectSript;
-        private System.Windows.Forms.Panel panelBuil;
+        private System.Windows.Forms.Panel panelBuild;
         private System.Windows.Forms.Label labelFileMask;
         private System.Windows.Forms.Label labelCommandLine;
         private System.Windows.Forms.ComboBox comboBoxResolutions;
+        private System.Windows.Forms.ComboBox comboBoxGapi;
     }
 }
 

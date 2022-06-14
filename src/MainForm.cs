@@ -18,6 +18,8 @@ namespace Urho3DSamplesLauncher
         public MainForm()
         {
             InitializeComponent();
+            comboBoxGapi.SelectedIndex = 0;
+
             CreateResolutionsList();
             InitOptionsList();
             RefreshFileListAndMaskLabel();
@@ -97,7 +99,7 @@ namespace Urho3DSamplesLauncher
             try
             {
                 listBoxScripts.Items.AddRange(Directory.GetFiles(dir, mask));
-                listBoxScripts.SelectedIndex = 0; // it calls UpdateCommandLineLabel();
+                listBoxScripts.SelectedIndex = 0; // Это вызовет UpdateCommandLineLabel();
             }
             catch
             {
@@ -151,8 +153,12 @@ namespace Urho3DSamplesLauncher
         {
             string result = listBoxScripts.SelectedItem.ToString();
             
-            if (comboBoxResolutions.SelectedItem.ToString() != "Use current resolution")
+            if (comboBoxResolutions.SelectedItem.ToString() != "Use default resolution")
                 result += resolutions[comboBoxResolutions.SelectedItem.ToString()];
+
+            string gapi = comboBoxGapi.SelectedItem.ToString().ToLower();
+            if (gapi != "default")
+                result += " -" + comboBoxGapi.SelectedItem.ToString().ToLower();
 
             foreach (var item in checkedListBoxOptions.CheckedItems)
                 result += options[item.ToString()];
@@ -191,7 +197,7 @@ namespace Urho3DSamplesLauncher
             {
                 var results = searcher.Get();
 
-                comboBoxResolutions.Items.Add("Use current resolution");
+                comboBoxResolutions.Items.Add("Use default resolution");
 
                 foreach (var result in results)
                 {
@@ -209,6 +215,11 @@ namespace Urho3DSamplesLauncher
         }
 
         private void comboBoxResolutions_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            UpdateCommandLineLabel();
+        }
+
+        private void comboBoxGapi_SelectedIndexChanged(object sender, EventArgs e)
         {
             UpdateCommandLineLabel();
         }
